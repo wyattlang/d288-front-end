@@ -1,0 +1,44 @@
+<form class="form" [formGroup]="addUserForm" (ngSubmit)="onSubmit()">
+
+  <div class="input-container">
+
+    <div>
+      <label for="firstName">
+        First Name
+      </label>
+      <input id="firstName" type="text" formControlName="firstName">
+    </div>
+
+    <div>
+      <label for="lastName">
+        Last Name
+      </label>
+      <input id="lastName" type="text" formControlName="lastName">
+    </div>
+
+    <div>
+      <label for="address">
+        Address
+      </label>
+      <input id="address" type="text" formControlName="address">
+    </div>
+
+    <div>
+      <label for="postal_code">
+        Postal Code
+      </label>
+      <input id="postal_code" type="text" formControlName="postal_code">
+    </div>
+
+    <div>
+      <label for="phone">
+        Phone
+      </label>
+      <input id="phone" type="text" formControlName="phone">
+    </div>
+
+    <button class="button" type="submit">Add Customer</button>
+
+  </div>
+
+</form>
