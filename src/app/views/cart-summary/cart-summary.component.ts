@@ -9,10 +9,10 @@ import { CartComponent } from '../cart/cart.component';
 })
 export class CartSummaryComponent implements OnInit {
 
-  constructor(public cart: CartComponent) { }
+  constructor() { }
 
   ngOnInit(): void {
-    this.cart.ngOnInit();
+    
   }
 
 }

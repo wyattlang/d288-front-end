@@ -1,4 +1,9 @@
 
+.content {
+  width: 15rem;
+  height: 100%;
+}
+
 li {
   font-size: 0.9rem;
   padding: 0;
@@ -31,7 +36,9 @@ li {
   user-select: none;
   -webkit-user-select: none;
   touch-action: manipulation;
-  width: 100%;
+  width: 60%;
+  position: relative;
+  bottom: 0
 }
 
 .button-31:hover,
