@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 
 import { FormBuilder } from '@angular/forms';
+import { Router } from '@angular/router';
 
 import { Customer } from 'src/app/model/customer';
 
@@ -24,7 +25,7 @@ export class AddCustomerComponent implements OnInit {
     phone: ''
   });
 
-  constructor(private formBuilder: FormBuilder, private http: HttpClient) { }
+  constructor(private formBuilder: FormBuilder, private http: HttpClient, private router: Router) { }
 
   ngOnInit(): void {
   }
@@ -39,9 +40,10 @@ export class AddCustomerComponent implements OnInit {
       phone: customerObjFromForm.phone,
       division: "http://localhost:8080/api/divisions/1"
     }
-    console.log('this is actually doing something');
-    console.log(customer);
+
     this.http.post(this.customerUrl, customer).subscribe();
+
+    this.router.navigate(["/customer"])
   }
 
 }
