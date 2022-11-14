@@ -4,7 +4,7 @@
   margin-top: 25px;
   margin-left: auto;
   margin-right: auto;
-  width: 99%;
+  padding: 25px;
 }
 
 .vacation-card-image {
@@ -43,3 +43,31 @@
   transform: scale(1.5);
   width: 0px;
 }
+
+.grid {
+  float: left;
+  width: 80%;
+}
+
+.cart-container {
+  float: right;
+  width: 20%;
+}
+
+.cart {
+  margin: 16px;
+  background: white;
+  color: black;
+  border-radius: 10px;
+  padding: 16px;
+  text-align: center;
+  padding-left: 0;
+  margin-left: 0;
+}
+
+.vl {
+  border-left: 1px solid grey;
+  float: left;
+  height: 825px;
+}
+

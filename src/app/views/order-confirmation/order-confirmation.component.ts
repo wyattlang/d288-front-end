@@ -8,14 +8,13 @@ import { CartItemExcursionsApiResponse } from 'src/app/model/cart-item-excursion
 import { Customer } from 'src/app/model/customer';
 import { PurchaseApiResponse } from 'src/app/model/purchase-api-response';
 import { Vacation } from 'src/app/model/vacation';
-import { CartComponent } from '../cart/cart.component';
 
 @Component({
-  selector: 'app-cart-summary',
-  templateUrl: './cart-summary.component.html',
-  styleUrls: ['./cart-summary.component.css']
+  selector: 'app-order-confirmation',
+  templateUrl: './order-confirmation.component.html',
+  styleUrls: ['./order-confirmation.component.css']
 })
-export class CartSummaryComponent implements OnInit {
+export class OrderConfirmationComponent implements OnInit {
 
   cartItemsUrl = "http://localhost:8080/api/carts/2/cartItems";
   checkoutUrl = "http://localhost:8080/api/checkout/purchase";
@@ -24,7 +23,9 @@ export class CartSummaryComponent implements OnInit {
   cartItems: CartItem[] = [];
   vacations: Set<Vacation> = new Set();
   bag_total: number = 0;
-  customer: Customer = new Customer(1, "123 Easy St", "55555", "John", "Doe", "(555)555-5555")
+  customer: Customer = new Customer(2, "123 Easy St", "55555", "John", "Doe", "(555)555-5555")
+
+  orderTrackingNumber: string = ""
 
   constructor(private http: HttpClient, private route: ActivatedRoute) { } 
 
@@ -45,12 +46,12 @@ export class CartSummaryComponent implements OnInit {
               }
             });
             this.vacations.add(response);
-            this.bag_total = this.sum(this.vacations);
           });
         });
       });
     });
     this.getCustomer().subscribe(customer => this.customer = customer);
+    this.checkout();
   }
 
   getCartItems(): Observable<CartItem[]> {
@@ -73,6 +74,73 @@ export class CartSummaryComponent implements OnInit {
       });
     });
     return sum_price;
+  }
+  
+  checkout() {
+
+    console.log(this.cartItems);
+
+    //let splitCartHref = this.cartItems[0]._links.cart.href.split('/');
+    //console.log(this.cartItems[0]._links.cart.href);
+    let cartId = 2
+    
+    //console.log(splitCartHref);
+
+    let purchase = {
+      cart: {
+          id: cartId,
+          orderTrackingNumber: null,
+          package_price: null,
+          party_size: 0,
+          create_date: null,
+          last_update: null,
+          customer: {
+            id: this.customer.id,
+            firstName: this.customer.firstName,
+            lastName: this.customer.lastName,
+            address: this.customer.address,
+            postal_code: this.customer.postal_code,
+            phone: this.customer.phone,
+            create_date: null,
+            last_update: null
+          }
+      },
+      cartItems: [],
+      customer: {
+          id: this.customer.id,
+          firstName: this.customer.firstName,
+          lastName: this.customer.lastName,
+          address: this.customer.address,
+          postal_code: this.customer.postal_code,
+          phone: this.customer.phone,
+          create_date: null,
+          last_update: null
+      }
+    }
+
+    this.http.post<PurchaseApiResponse>(this.checkoutUrl, purchase).subscribe(response => {
+      this.orderTrackingNumber = response.orderTrackingNumber;
+    });
+
+    this.cartItems = [];
+    this.vacations = new Set();
+    this.bag_total = 0;
+
+    this.deleteAllCartItems(cartId);
+
+  }
+
+  deleteAllCartItems(cartId: number) {
+    
+    this.http.get<CartCartItemsApiResponse>(this.cartItemsUrl)
+    .pipe(
+      map(response => response._embedded.cartItems)
+    ).subscribe(cartItems => {
+      cartItems.forEach(cartItem => {
+        this.http.delete(cartItem._links.self.href).subscribe();
+      });
+    });
+
   }
 
 }

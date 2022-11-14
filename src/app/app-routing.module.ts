@@ -9,6 +9,7 @@ import { ViewCustomerComponent } from './views/view-customer/view-customer.compo
 import { AddCustomerComponent } from './views/add-customer/add-customer.component';
 import { EditCustomerComponent } from './views/edit-customer/edit-customer.component';
 import { CartSummaryComponent } from './views/cart-summary/cart-summary.component';
+import { OrderConfirmationComponent } from './views/order-confirmation/order-confirmation.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/vacation', pathMatch: 'full' },
@@ -19,7 +20,8 @@ const routes: Routes = [
   {path: 'customer', component: ViewCustomerComponent},
   {path: 'customer/new', component: AddCustomerComponent},
   {path: 'customer/:customerId', component: EditCustomerComponent},
-  {path: 'cart-summary', component: CartSummaryComponent}
+  {path: 'cart-summary', component: CartSummaryComponent},
+  {path: 'order-confirmation', component: OrderConfirmationComponent}
 ];
 
 @NgModule({

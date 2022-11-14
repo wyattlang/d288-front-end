@@ -1,14 +1,29 @@
 
 .content {
-  width: 15rem;
+  position: relative;
+  top: 0;
+  bottom: 0;
   height: 100%;
 }
 
+h2 {
+  font-size: 2rem;
+}
+
 li {
-  font-size: 0.9rem;
-  padding: 0;
+  font-size: 1rem;
   margin-left: 0;
+  margin-top: 25px;
   text-align: left;
+}
+
+.button-and-total-container {
+  position: relative;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin-bottom: 40px;
+  align-items: center;
 }
 
 .button-31 {

@@ -34,19 +34,22 @@ export class CartComponent implements OnInit {
   ngOnInit(): void {
     this.getCartItems().subscribe(cartItems => {
       this.cartItems = cartItems
-      console.log(this.cartItems);
       this.cartItems.forEach(async item => {
-        this.http.get<Vacation>(item._links.vacation.href).subscribe(response => {
-          this.http.get<CartItemExcursionsApiResponse>(item._links.excursions.href).subscribe(response2 => {
+        this.http.get<Vacation>(item._links.vacation.href).subscribe(async response => {
+          this.http.get<CartItemExcursionsApiResponse>(item._links.excursions.href).subscribe(async response2 => {
             response.excursions = response2._embedded.excursions;
+            this.vacations.forEach(vac => {
+              if (vac.vacation_title === response.vacation_title) {
+                if (vac.excursions != undefined && response.excursions != undefined) {
+                  vac.excursions.push(response.excursions[0]);
+                  
+                }
+                response = vac;
+              }
+            });
+            this.vacations.add(response);
             this.bag_total = this.sum(this.vacations);
           });
-          this.vacations.forEach(vac => {
-            if (vac.vacation_title === response.vacation_title) {
-              response = vac;
-            }
-          });
-          this.vacations.add(response);
         });
       });
     });

@@ -46,10 +46,12 @@ mat-sidenav-container {
   text-align: center;
   padding-left: 0;
   margin-left: 0;
+  z-index: 0;
 }
 
 .vl {
   border-left: 1px solid grey;
   float: right;
   height: 825px;
+  z-index: -1;
 }

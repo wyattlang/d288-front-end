@@ -1,6 +1,6 @@
 
 <div class="content">
-  <div fxLayout="row wrap" fxLayoutGap="16px grid">
+  <div class="grid" fxLayout="row wrap" fxLayoutGap="16px grid">
     <div fxFlex="25%" fxFlex.xs="100%" fxFlex.sm="33%" *ngFor="let excursion of excursions">
       <mat-card class="mat-elevation-z4" >
         <img class="vacation-card-image" mat-card-image src="{{excursion.image_URL}}">
@@ -18,6 +18,12 @@
           </button>
         </mat-card-actions>
       </mat-card>
+    </div>
+  </div>
+  <div class="cart-container">
+    <div class="vl"></div>
+    <div class="cart">
+      <app-cart></app-cart>
     </div>
   </div>
 </div>

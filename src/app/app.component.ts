@@ -12,6 +12,8 @@ import { NavigationEnd, Router } from '@angular/router';
 export class AppComponent {
   title = 'Vacation Dashboard';
 
+  showCart = true;
+
   @ViewChild(MatSidenav)
   sidenav!: MatSidenav;
  

@@ -27,6 +27,7 @@ import { AddCustomerComponent } from './views/add-customer/add-customer.componen
 import { ViewCustomerComponent } from './views/view-customer/view-customer.component';
 import { EditCustomerComponent } from './views/edit-customer/edit-customer.component';
 import { CartSummaryComponent } from './views/cart-summary/cart-summary.component';
+import { OrderConfirmationComponent } from './views/order-confirmation/order-confirmation.component';
 
 @NgModule({
   declarations: [
@@ -41,6 +42,7 @@ import { CartSummaryComponent } from './views/cart-summary/cart-summary.componen
     ViewCustomerComponent,
     EditCustomerComponent,
     CartSummaryComponent,
+    OrderConfirmationComponent,
   ],
   imports: [
     BrowserModule,

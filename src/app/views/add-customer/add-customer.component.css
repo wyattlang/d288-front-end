@@ -32,8 +32,12 @@ body {
 
 .input-container {
   height: 50px;
-  position: relative;
-  width: 100%;
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin-left: 64px;
+  margin-right: 56px;
+  align-items: center;
 }
 
 .ic1 {
@@ -128,6 +132,16 @@ app-cart {
   visibility: hidden !important;
 }
 
+input[type=text], select {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
 .button-31 {
   background-color: #222;
   border-radius: 4px;
@@ -153,7 +167,7 @@ app-cart {
   user-select: none;
   -webkit-user-select: none;
   touch-action: manipulation;
-  width: 100%;
+  width: 10%;
 }
 
 .button-31:hover,

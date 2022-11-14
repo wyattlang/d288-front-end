@@ -15,16 +15,17 @@
 
 <div class="content">
   <ul *ngFor="let vacation of vacations">
-    <li>{{vacation.vacation_title}}</li>
-    <ul *ngFor="let excursion of vacation.excursions">
-      <li>{{excursion.excursion_title}}</li>
+    <li>{{vacation.vacation_title}} {{vacation.travel_price}}</li>
+    <ul>
+      <li *ngFor="let excursion of vacation.excursions">{{excursion.excursion_title}}</li>
     </ul>
   </ul>
 </div>
+<div class="button-and-total-container">
+  <p>Bag Total: </p>
+  <p>${{bag_total | number:'1.2-2'}}</p>
 
-<p>Bag Total: </p>
-<p>{{bag_total}}</p>
-
-<button class="button-31" (click)="checkout()">
-  <a>Checkout</a>
-</button>
+  <button class="button-31" [routerLink]="['/cart-summary']">
+    <a>Checkout</a>
+  </button>
+</div>

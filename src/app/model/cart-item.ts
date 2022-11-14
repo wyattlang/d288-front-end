@@ -3,6 +3,9 @@ export class CartItem {
 
   constructor(
     public _links: {
+      self: {
+        href: string
+      },
       vacation: {
         href: string
       },
