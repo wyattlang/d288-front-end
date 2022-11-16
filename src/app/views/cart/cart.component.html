@@ -15,7 +15,7 @@
 
 <div class="content">
   <ul *ngFor="let vacation of vacations">
-    <li>{{vacation.vacation_title}} {{vacation.travel_price}}</li>
+    <li>{{vacation.vacation_title}}</li>
     <ul>
       <li *ngFor="let excursion of vacation.excursions">{{excursion.excursion_title}}</li>
     </ul>

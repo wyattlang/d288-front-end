@@ -28,7 +28,13 @@ export class ExcursionComponent implements OnInit {
 
   ngOnInit(): void {
     this.vacationId = +this.route.snapshot.paramMap.get('vacationId')!;
-    this.getExcursions(this.vacationId).subscribe(excursions => this.excursions = excursions);
+    this.getExcursions(this.vacationId).subscribe(excursions => {
+      excursions.forEach(excursion => {
+        let parsedId = excursion._links.self.href.split("/")[5];
+        excursion.id = parseInt(parsedId);
+      });
+      this.excursions = excursions;
+    });
   }
 
   getExcursions(vacationId: number): Observable<Excursion[]> {

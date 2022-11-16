@@ -22,7 +22,13 @@ export class VacationComponent implements OnInit {
   constructor(private http: HttpClient) { }
 
   ngOnInit(): void {
-    this.getVacations().subscribe(vacations => this.vacations = vacations);
+    this.getVacations().subscribe(vacations => {
+      vacations.forEach(vacation => {
+        let parsedId = vacation._links.self.href.split("/")[5];
+        vacation.id = parseInt(parsedId);
+      }); 
+      this.vacations = vacations
+    });
   }
 
   getVacations(): Observable<Vacation[]> {
