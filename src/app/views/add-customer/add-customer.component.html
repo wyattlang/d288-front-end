@@ -37,6 +37,26 @@
       <input id="phone" type="text" formControlName="phone">
     </div>
 
+    <div>
+      <label>
+        Country
+      </label>
+      <select [(ngModel)]="countryChoice" id="country" formControlName="country">
+        <option selected="true" disabled="disabled" hidden></option>
+        <option [ngValue]="country" *ngFor="let country of countries">{{country.country_name}}</option>
+      </select>
+    </div>
+
+    <div>
+      <label>
+        Division
+      </label>
+      <select [(ngModel)]="divisionChoice" id="division" formControlName="division">
+        <option selected="true" disabled="disabled" hidden></option>
+        <option [ngValue]="division" *ngFor="let division of getDivisionsByCountryId(countryChoice)">{{division.division_name}}</option>
+      </select>
+    </div>
+
     <button class="button-31" type="submit">Add Customer</button>
 
   </div>
