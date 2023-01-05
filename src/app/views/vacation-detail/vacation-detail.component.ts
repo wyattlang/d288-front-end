@@ -5,7 +5,7 @@ import { HttpClient } from '@angular/common/http';
 
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 
 import { Vacation } from '../../model/vacation';
 
@@ -18,7 +18,7 @@ export class VacationDetailComponent implements OnInit {
 
   vacationUrl = 'http://localhost:8080/api/vacations';
 
-  vacation: Vacation = new Vacation(0, "", "", 0, "", new Date(), new Date());
+  vacation: Vacation = new Vacation("", "", 0, "", new Date(), new Date(), { self: { href: "" }});
 
   constructor(private http: HttpClient, private route: ActivatedRoute) { }
 
@@ -29,6 +29,13 @@ export class VacationDetailComponent implements OnInit {
 
   getVacation(vacationId: number): Observable<Vacation> {
     return this.http.get<Vacation>(`${this.vacationUrl}/${vacationId}`)
+        .pipe(
+          map(vacation => {
+            let parsedId = vacation._links.self.href.split("/")[5];
+            vacation.id = parseInt(parsedId);
+            return vacation;
+          })
+        )
   }
 
 }

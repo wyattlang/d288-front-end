@@ -14,7 +14,7 @@
             <h2 class="vacation-title">{{excursion.excursion_title}}</h2>
             <p>${{excursion.excursion_price | number:'1.2-2'}}</p>
             <br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-            <button class="button-31" id="select-excursions-button" [routerLink]="['/vacation', vacationId, 'excursions']" (click)="addToCart(excursion.id, vacationId)">
+            <button class="button-31" id="select-excursions-button" [routerLink]="['/vacation', vacationId, 'excursions']" (click)="addToCart(excursionId, vacationId)">
               <a>Add Excursion</a>
             </button>
           </div>

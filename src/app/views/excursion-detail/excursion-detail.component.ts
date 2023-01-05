@@ -22,16 +22,17 @@ export class ExcursionDetailComponent implements OnInit {
   cartItemsUrl = 'http://localhost:8080/api/cartItems';
   cartUrl = 'http://localhost:8080/api/carts'
 
-  excursion: Excursion = new Excursion(0, "", 0, "", new Date(), new Date());
+  excursion: Excursion = new Excursion("", 0, "", new Date(), new Date(), { self: { href: "" }});
 
   vacationId: number = 0;
+  excursionId: number = 0;
 
   constructor(private http: HttpClient, private route: ActivatedRoute) { }
  
   ngOnInit(): void {
     this.vacationId = +this.route.snapshot.paramMap.get('vacationId')!;
-    let excursionId = +this.route.snapshot.paramMap.get('excursionId')!;
-    this.getExcursion(this.vacationId, excursionId).subscribe(excursion => this.excursion = excursion);
+    this.excursionId = +this.route.snapshot.paramMap.get('excursionId')!;
+    this.getExcursion(this.vacationId, this.excursionId).subscribe(excursion => this.excursion = excursion);
   }
 
   getExcursion(vacationId: number, excursionId: number): Observable<Excursion> {
